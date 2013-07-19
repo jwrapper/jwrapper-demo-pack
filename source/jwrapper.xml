@@ -1,0 +1,68 @@
+<document xmlns:gsp='http://groovy.codehaus.org/2005/gsp'>
+
+	<JWrapper>
+
+		<!-- This tells JWrapper the name of your app bundle, you should use only 
+			letters, spaces and numbers here -->
+		<BundleName>MinimalApp</BundleName>
+
+		<!-- This bit defines a virtual app - your app bundle can have one of these 
+			or a bunch of them -->
+		<App>
+
+			<!-- The name of the app that launches -->
+			<Name>MinimalApp</Name>
+
+			<!-- The logo for the app, we automatically scale and convert it to OS 
+				specific formats -->
+			<LogoPNG>${basedir}/source/minimal_logo.png</LogoPNG>
+
+			<!-- The Java main class for your app -->
+			<MainClass>com.jwrapper.app.DemoApp</MainClass>
+
+			<!-- Any static parameters you want to pass in to your main method -->
+			<Param>one</Param>
+			<Param>two</Param>
+
+		</App>
+
+		<!-- This tells JWrapper what languages your app uses so JWrapper can let 
+			the user choose (if its more than one) -->
+		<SupportedLanguages>en,fr</SupportedLanguages>
+
+		<!-- If your app needs to run elevated (as admin) on Windows you can specify 
+			that here -->
+		<WindowsElevation>None</WindowsElevation>
+
+		<!-- This app installs itself for the current user, you can also install 
+			for all users or run as a temporary executable -->
+		<InstallType>CurrentUser</InstallType>
+
+		<!-- This is the optional update URL for the app, if the files here get 
+			updated the app will auto update -->
+		<UpdateURL>http://minimal.jwrapper.com/</UpdateURL>
+
+		<!-- This specifies the splash image for your app bundle, we automatically 
+			scale it and convert it to OS specific formats -->
+		<SplashPNG>${basedir}/source/minimal_splash.png</SplashPNG>
+
+		<!-- This specifies the logo for your app bundle, we automatically scale 
+			it and embed it in your native exes -->
+		<BundleLogoPNG>${basedir}/source/minimal_bundle_logo.png</BundleLogoPNG>
+
+		<!-- Here's where you specify your Windows 32 bit JRE, note that you can 
+			use a 32 bit JRE on 64 bit Windows -->
+		<Linux32JRE>${linux32jre}</Linux32JRE>
+		<Windows32JRE>${windows32jre}</Windows32JRE>
+		<Linux64JRE>${linux32jre}</Linux64JRE>
+		<Windows64JRE>${windows32jre}</Windows64JRE>
+
+		<!-- Here's where you can add JAR files or whatever else your app needs 
+			to run -->
+		<gsp:scriptlet>dependencyList.each { file -> </gsp:scriptlet>
+		<File classpath='yes'>${file}</File>
+		<gsp:scriptlet> } </gsp:scriptlet>
+
+	</JWrapper>
+
+</document>
